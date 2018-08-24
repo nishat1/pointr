@@ -35,7 +35,7 @@ function ButtonAppBar(props) {
             <MenuIcon />
           </IconButton> */}
 
-          <Typography variant="title" color="inherit" className={classes.flex}>
+          <Typography variant="title" color="inherit" className={classes.flex} onClick={() => window.location.reload()}>
             Pointr
           </Typography>
 

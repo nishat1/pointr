@@ -116,7 +116,6 @@ class PlayerCard extends Component {
         const buttonSettings = {
             variant: "outlined",
             size: "small",
-            raised: true,
             style: {
                 margin: "5px"
             }
