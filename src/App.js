@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Header from './components/header_footer/Header';
-import PlayerCard from './components/PlayerCard/PlayerCard'
+import PlayerCards from './components/PlayerCard'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Header />
-        <PlayerCard />
+        <PlayerCards />
       </div>
     );
   }
