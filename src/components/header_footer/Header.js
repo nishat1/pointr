@@ -25,13 +25,12 @@ const styles = {
 
 function ButtonAppBar(props) {
   const { classes } = props;
-  console.log(props.positionFixed);
   return (
     <div className={classes.root}>
 
       {/* Creates header object: position-fixed keeps header visible during scroll */}
       <AppBar 
-        position={props.positionFixed ? "fixed" : "sticky"}
+        position="fixed"
         style={{backgroundColor: "#2f2f2f"}}>
 
         <Toolbar>
@@ -39,6 +38,34 @@ function ButtonAppBar(props) {
           {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton> */}
+
+          {/* 
+              Adds title in header. 
+              Reloads page if title is clicked
+          */}
+          <Typography 
+            variant="title" 
+            color="inherit" 
+            className={classes.flex} 
+            onClick={() => window.location.reload()}
+          >
+            Pointr
+          </Typography>
+
+        </Toolbar>
+
+      </AppBar>
+
+      {/* 
+          Exact same header used to fix margin spacing 
+          If this is removed, the fixed header from the top overlaps card components
+          No more changes required to this appBar section
+      */}
+      <AppBar 
+        position="static"
+        style={{backgroundColor: "#2f2f2f"}}>
+
+        <Toolbar>
 
           {/* 
               Adds title in header. 
