@@ -25,12 +25,13 @@ const styles = {
 
 function ButtonAppBar(props) {
   const { classes } = props;
+  console.log(props.positionFixed);
   return (
     <div className={classes.root}>
 
       {/* Creates header object: position-fixed keeps header visible during scroll */}
       <AppBar 
-        position="fixed"
+        position={props.positionFixed ? "fixed" : "sticky"}
         style={{backgroundColor: "#2f2f2f"}}>
 
         <Toolbar>

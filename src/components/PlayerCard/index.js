@@ -16,7 +16,6 @@ const styles = theme => ({
     flexGrow: 1,
     padding: 20,
     touchAction: "manipulation",
-    marginTop: 65,
   },
   button: {
       margin: theme.spacing.unit,
