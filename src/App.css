@@ -1,5 +1,5 @@
 .App {
   background: #e4e3e3a8;
-  user-select: none;
-  touch-action: manipulation;
+  user-select: none; /* removes highlighting of score */
+  touch-action: manipulation; /* Used to remove double-tap functionality on IOS */
 }

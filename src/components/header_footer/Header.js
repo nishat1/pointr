@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
+/* Styles for Header pulled from MaterialUI header demo */
+/* flexGrow: defines ability of flex item to grow if necessary */
 const styles = {
   root: {
     flexGrow: 1,
@@ -25,8 +27,10 @@ function ButtonAppBar(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
+
+      {/* Creates header object: position-fixed keeps header visible during scroll */}
       <AppBar 
-        position="static"
+        position="fixed"
         style={{backgroundColor: "#2f2f2f"}}>
 
         <Toolbar>
@@ -35,7 +39,16 @@ function ButtonAppBar(props) {
             <MenuIcon />
           </IconButton> */}
 
-          <Typography variant="title" color="inherit" className={classes.flex} onClick={() => window.location.reload()}>
+          {/* 
+              Adds title in header. 
+              Reloads page if title is clicked
+          */}
+          <Typography 
+            variant="title" 
+            color="inherit" 
+            className={classes.flex} 
+            onClick={() => window.location.reload()}
+          >
             Pointr
           </Typography>
 
