@@ -60,6 +60,24 @@ class PlayerCard extends Component {
         });
     }
 
+    resetScore = () => {
+        this.setState({
+            score: 0
+        });
+    }
+
+    componentDidUpdate() {
+        /*
+            Check if reset boolean from parent is true or false
+            if true: set all scores to 0 but do not delete any cards
+            if false: do nothing 
+        */
+        if(this.props.reset) {
+            this.resetScore();
+            this.props.updateReset(false);
+        }
+    }
+
     render() {
 
         // styling for +/- buttons in each card

@@ -66,10 +66,17 @@ class PlayerCards extends Component {
                     alignItems="center"
                 >
 
-                    {/* Dynamically outputs a card for each player based on number of players in state */}
+                    {/* 
+                        Dynamically outputs a card for each player based on number of players in state 
+                        updateReset changes reset boolean to false to prevent component to keep resetting score
+                    */}
                     {this.state.players.map(player => {
                         return(
-                            <PlayerCard key={player} player={player} />
+                            <PlayerCard 
+                                key={player} 
+                                player={player} 
+                                reset={this.props.reset} 
+                                updateReset={(value) => this.props.updateReset(value)}/>
                         );
                     })}
 

@@ -5,8 +5,10 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import SettingsBack from '@material-ui/icons/SettingsBackupRestore';
 
 /* Styles for Header pulled from MaterialUI header demo */
 /* flexGrow: defines ability of flex item to grow if necessary */
@@ -52,9 +54,24 @@ function ButtonAppBar(props) {
             Pointr
           </Typography>
 
+          {/*
+              IconButton for resetting score
+              Sets a reset boolean to true in the parent component when clicked
+          */}
+          <IconButton 
+            // className={this.props.classes.button} 
+            aria-label="Reset ScoresSettingsBSettingsBackupRestore" 
+            color="inherit"
+            onClick={() => props.onReset(true)}
+            >
+            <SettingsBack />
+          </IconButton>
+
         </Toolbar>
 
       </AppBar>
+
+
 
       {/* 
           Exact same header used to fix margin spacing 
