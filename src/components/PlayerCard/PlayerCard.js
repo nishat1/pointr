@@ -33,7 +33,8 @@ class PlayerCard extends Component {
 
     // score for player
     state = {
-        score: 0
+        score: 0,
+        mouseDown: false
     }
 
     /**
