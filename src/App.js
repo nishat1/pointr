@@ -9,7 +9,11 @@ import ReactGA from 'react-ga';
 class App extends Component {
 
   state = {
-    resetScore: false
+    resetScore: false,
+    players: [
+      "P1",
+      "P2"
+    ]
   }
 
   // boolean to reset the score when reset button is clicked
@@ -17,6 +21,12 @@ class App extends Component {
   toggleReset = (value) => {
     this.setState({
       resetScore: value
+    });
+  }
+
+  updatePlayers = (playerList) => {
+    this.setState({
+      players: playerList
     });
   }
 
@@ -28,12 +38,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header onReset={(value) => this.toggleReset(value)}/>
+        <Header 
+          onReset={(value) => this.toggleReset(value)}
+          players={this.state.players}/>
 
         {/*  updateReset changes reset boolean to false to prevent component to keep resetting score */}
         <PlayerCards 
           reset={this.state.resetScore} 
-          updateReset={(value) => this.toggleReset(value)}/>
+          updateReset={(value) => this.toggleReset(value)}
+          players={(playerList) => this.updatePlayers(playerList)}/>
       </div>
     );
   }

@@ -51,6 +51,8 @@ class PlayerCards extends Component {
         this.setState({
             players: [...this.state.players, "P" + (this.state.players.length + 1)]
         });
+
+        this.props.players([...this.state.players, "P" + (this.state.players.length + 1)]);
     }
 
     render() {

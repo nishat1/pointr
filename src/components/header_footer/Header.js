@@ -1,6 +1,5 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import SettingsBack from '@material-ui/icons/SettingsBackupRestore';
+
+import SideDrawer from './SideDrawer';
 
 /* Styles for Header pulled from MaterialUI header demo */
 /* flexGrow: defines ability of flex item to grow if necessary */
@@ -25,87 +26,107 @@ const styles = {
   },
 };
 
-function ButtonAppBar(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
+class Header extends React.Component {
 
-      {/* Creates header object: position-fixed keeps header visible during scroll */}
-      <AppBar 
-        position="fixed"
-        style={{backgroundColor: "#2f2f2f"}}>
+  state = {
+    drawerOpen: false
+  }
 
-        <Toolbar>
+  toggleDrawer = (openBool) => {
+    this.setState({
+      drawerOpen: openBool
+    });
+  }
+  
+  render() {
+    return (
+      <div className={this.props.classes.root}>
 
-          {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton> */}
+        {/* Creates header object: position-fixed keeps header visible during scroll */}
+        <AppBar 
+          position="fixed"
+          style={{backgroundColor: "#2f2f2f"}}>
 
-          {/* 
-              Adds title in header. 
-              Reloads page if title is clicked
-          */}
-          <Typography 
-            variant="title" 
-            color="inherit" 
-            className={classes.flex} 
-            onClick={() => window.location.reload()}
-          >
-            Pointr
-          </Typography>
+          <Toolbar>
 
-          {/*
-              IconButton for resetting score
-              Sets a reset boolean to true in the parent component when clicked
-          */}
-          <IconButton 
-            // className={this.props.classes.button} 
-            aria-label="Reset ScoresSettingsBSettingsBackupRestore" 
-            color="inherit"
-            onClick={() => props.onReset(true)}
+            <IconButton 
+              className={this.props.classes.menuButton} 
+              color="inherit" 
+              aria-label="Menu"
+              onClick={() => this.toggleDrawer(true)} >
+
+              <MenuIcon />
+
+            </IconButton>
+
+            <SideDrawer
+              open={this.state.drawerOpen}
+              onClose={(openBool) => this.toggleDrawer(openBool)}
+              players={this.props.players}
+            />
+
+            {/* 
+                Adds title in header. 
+                Reloads page if title is clicked
+            */}
+            <Typography 
+              variant="title" 
+              color="inherit" 
+              className={this.props.classes.flex} 
+              onClick={() => window.location.reload()}
             >
-            <SettingsBack />
-          </IconButton>
+              Pointr
+            </Typography>
 
-        </Toolbar>
+            {/*
+                IconButton for resetting score
+                Sets a reset boolean to true in the parent component when clicked
+            */}
+            <IconButton 
+              // className={this.props.classes.button} 
+              aria-label="Reset ScoresSettingsBSettingsBackupRestore" 
+              color="inherit"
+              onClick={() => this.props.onReset(true)}
+              >
+              <SettingsBack />
+            </IconButton>
 
-      </AppBar>
+          </Toolbar>
+
+        </AppBar>
 
 
 
-      {/* 
-          Exact same header used to fix margin spacing 
-          If this is removed, the fixed header from the top overlaps card components
-          No more changes required to this appBar section
-      */}
-      <AppBar 
-        position="static"
-        style={{backgroundColor: "#2f2f2f"}}>
+        {/* 
+            Exact same header used to fix margin spacing 
+            If this is removed, the fixed header from the top overlaps card components
+            No more changes required to this appBar section
+        */}
+        <AppBar 
+          position="static"
+          style={{backgroundColor: "#2f2f2f"}}>
 
-        <Toolbar>
+          <Toolbar>
 
-          {/* 
-              Adds title in header. 
-              Reloads page if title is clicked
-          */}
-          <Typography 
-            variant="title" 
-            color="inherit" 
-            className={classes.flex} 
-            onClick={() => window.location.reload()}
-          >
-            Pointr
-          </Typography>
+            {/* 
+                Adds title in header. 
+                Reloads page if title is clicked
+            */}
+            <Typography 
+              variant="title" 
+              color="inherit" 
+              className={this.props.classes.flex} 
+              onClick={() => window.location.reload()}
+            >
+              Pointr
+            </Typography>
 
-        </Toolbar>
+          </Toolbar>
 
-      </AppBar>
-    </div>
-  );
+        </AppBar>
+      </div>
+    );
+  }
 }
 
-ButtonAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ButtonAppBar);
+export default withStyles(styles)(Header);
