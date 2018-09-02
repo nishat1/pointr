@@ -4,11 +4,20 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 
-import Avatar from '@material-ui/core/Avatar';
+import { scroller } from 'react-scroll';
 
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 const SideDrawer = (props) => {
+
+    const scrollToElement = (element) => {
+        scroller.scrollTo(element, {
+            duration: 1000,
+            smooth: true,
+            offset: -150
+        });
+    }
+
     return (
         <SwipeableDrawer 
             disableBackdropTransition={!iOS} 
@@ -24,7 +33,7 @@ const SideDrawer = (props) => {
                     return(
                         <ListItem 
                             button 
-                            onClick={() => console.log(player )}
+                            onClick={() => scrollToElement(player)}
                             key={player}
                             style={{width: 150}}>
 

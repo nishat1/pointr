@@ -6,6 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 
+import { Element } from 'react-scroll';
+
 /*
     Styles used from Grid demo from MaterialUI
 */
@@ -99,20 +101,22 @@ class PlayerCard extends Component {
                     - 2 buttons for increasing/decreasing score
             */
             <Grid item xs={6}>
-                <Paper className={this.props.classes.paper}>
-                    <Avatar className={this.props.classes.avatar}> {this.props.player} </Avatar>
-                    <h1> {this.state.score} </h1>
-                    <div>
-                        <Button 
-                            onClick={() => this.updateScoreUp()}
-                            {...buttonSettings}>+</Button>
-                    </div>
-                    <div>
-                        <Button 
-                            onClick={() => this.updateScoreDown()}
-                            {...buttonSettings}>-</Button>
-                    </div>
-                </Paper>
+                <Element name={this.props.player}>
+                    <Paper className={this.props.classes.paper}>
+                        <Avatar className={this.props.classes.avatar}> {this.props.player} </Avatar>
+                        <h1> {this.state.score} </h1>
+                        <div>
+                            <Button 
+                                onClick={() => this.updateScoreUp()}
+                                {...buttonSettings}>+</Button>
+                        </div>
+                        <div>
+                            <Button 
+                                onClick={() => this.updateScoreDown()}
+                                {...buttonSettings}>-</Button>
+                        </div>
+                    </Paper>
+                </Element>
             </Grid>
         );
     }

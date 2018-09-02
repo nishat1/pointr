@@ -6,6 +6,8 @@ import AddCircle from '@material-ui/icons/AddCircle';
 import IconButton from '@material-ui/core/IconButton';
 import PlayerCard from './PlayerCard';
 
+import { scroller } from 'react-scroll';
+
 /*
     Styling for Grid based on Grid demo from MaterialUI.
     touchAction used to disable double tap to zoom on IOS.
@@ -41,6 +43,14 @@ class PlayerCards extends Component {
         ]
     }
 
+    scrollToElement = (element) => {
+        scroller.scrollTo(element, {
+            duration: 1000,
+            smooth: true,
+            offset: -150
+        });
+    }
+
     /**
      * addPlayer function adds a player to state everytime it's called
      * args: none
@@ -50,6 +60,8 @@ class PlayerCards extends Component {
     addPlayer = () => {
         this.setState({
             players: [...this.state.players, "P" + (this.state.players.length + 1)]
+        }, () => {
+            this.scrollToElement(this.state.players[this.state.players.length - 1])
         });
 
         this.props.players([...this.state.players, "P" + (this.state.players.length + 1)]);
