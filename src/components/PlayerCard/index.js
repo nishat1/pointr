@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import AddCircle from '@material-ui/icons/AddCircle';
+import Backspace from '@material-ui/icons/Backspace';
 import IconButton from '@material-ui/core/IconButton';
 import PlayerCard from './PlayerCard';
 
@@ -25,7 +26,6 @@ const styles = theme => ({
   },
   addcircleicon: {
     fontSize: "48px",
-    textAlign: "center",
     touchAction: "manipulation",
   },
 });
@@ -67,6 +67,18 @@ class PlayerCards extends Component {
         this.props.players([...this.state.players, "P" + (this.state.players.length + 1)]);
     }
 
+    /*
+        deletePlayer function deletes a player from state on call
+    */
+    deletePlayer = () => {
+        this.setState({
+            players: this.state.players.slice(0, this.state.players.length-1)
+        });
+
+        this.props.players(this.state.players.slice(0, this.state.players.length-1));
+
+    }
+
     render() {
 
         return(
@@ -96,10 +108,19 @@ class PlayerCards extends Component {
 
                     {/* Add Player button -- takes up same grid space as a player card */}
                     <Grid item xs={6} alignItems="center" justify="center" container>
+                        {/* Delete Player Button */}
+                        <IconButton 
+                            className={this.props.classes.button} 
+                            aria-label="Delete Player" 
+                            onClick={() => this.deletePlayer()}>
+                            <Backspace className={this.props.classes.addcircleicon} />
+                        </IconButton>
+
+                        {/* Add Player Button */}
                         <IconButton 
                             className={this.props.classes.button} 
                             aria-label="Add Player" 
-                            onClick={this.addPlayer}>
+                            onClick={() => this.addPlayer()}>
                             <AddCircle className={this.props.classes.addcircleicon} />
                         </IconButton>
                     </Grid>
