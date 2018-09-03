@@ -101,6 +101,7 @@ class PlayerCard extends Component {
                     - 2 buttons for increasing/decreasing score
             */
             <Grid item xs={6}>
+                {/* Label each card with an element tag from react-scroll */}
                 <Element name={this.props.player}>
                     <Paper className={this.props.classes.paper}>
                         <Avatar className={this.props.classes.avatar}> {this.props.player} </Avatar>
